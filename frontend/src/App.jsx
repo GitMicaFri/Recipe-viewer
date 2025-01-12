@@ -3,7 +3,7 @@ import './App.css'
 import RecipeCard from './components/RecipeCard/RecipeCard.jsx';
 
 function App() {
-  const testRecept = {
+  const testRecept = { //mockdata
     title: "Farmors Äppelkaka",
     description: "En saftig och kryddig äppelkaka med kanel och kardemumma.",
     temperature: 175,
@@ -25,7 +25,8 @@ function App() {
     ]
   }
 
-  return (
+  // returnerar strukturen
+  return ( 
     <div className="app">
       <header className="header">
         <h1>Familjens Receptsamling</h1>
@@ -34,7 +35,7 @@ function App() {
         <RecipeCard {...testRecept} />
       </main>
       <footer className="footer">
-        <p>© 2025 Familjens Receptsamling</p>
+        <p>© Micaela Fristedt 2025 Familjens Receptsamling</p>
       </footer>
     </div>
   )
