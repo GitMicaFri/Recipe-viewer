@@ -5,7 +5,7 @@ import { initializeApp } from 'firebase/app';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: 'AIzaSyBTpfKw98k0h-AhEt1vp_-y5DrMbUmbl-8',
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: 'receptsamling-d1f75.firebaseapp.com',
     projectId: 'receptsamling-d1f75',
     storageBucket: 'receptsamling-d1f75.firebasestorage.app',
