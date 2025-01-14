@@ -5,15 +5,41 @@
 }
 
 .header {
-    padding: 2rem;
+    padding: 10px 20px;
     background: linear-gradient(to right, #8b5cf6, #6366f1);
     color: white;
     text-align: center;
+    display: flex;
+    justify-content: space-between; /* För att placera hamburgermenyn och texten */
+    align-items: center;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.header-subtitle {
+    font-size: 1rem;
+    margin: 5px 0 0;
+    color: #e0e7ff; /* Lite ljusare text */
 }
 
 .main {
     flex-grow: 1;
     padding: 2rem;
+}
+
+.recipe-card {
+    max-width: 400px;
+    margin: 20px auto;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centrerar texten i kortet */
+    display: flex;
+    flex-direction: column; /* Säkerställer vertikal layout */
 }
 
 .footer {

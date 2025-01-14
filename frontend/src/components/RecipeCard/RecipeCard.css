@@ -1,3 +1,38 @@
+/* Hero-sektion */
+.hero-image {
+    position: relative;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px 8px 0 0;
+}
+
+.hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5); /* Mörk overlay */
+    padding: 1rem;
+}
+
+.hero-title {
+    color: white;
+    font-size: 2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+@media (max-width: 768px) {
+    .hero-image {
+        height: 200px; /* Gör Hero-sektionen mindre på mobil */
+    }
+
+    .hero-title {
+        font-size: 1.5rem; /* Justera textstorleken */
+    }
+}
+
+/* Receptkort */
 .recipe-card {
     max-width: 400px;
     margin: 20px auto;
@@ -10,28 +45,6 @@
 
 .recipe-card:hover {
     transform: scale(1.03);
-}
-
-.recipe-hero {
-    position: relative;
-    height: 200px;
-}
-
-.recipe-hero img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.recipe-hero-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
-    text-align: center;
 }
 
 .recipe-content {

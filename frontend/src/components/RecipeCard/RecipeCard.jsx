@@ -2,10 +2,13 @@ import PropTypes from 'prop-types';
 
 const RecipeCard = ({ title, description, image, ingredients, instructions }) => {
   return (
-    <div>
-      <h2>{title}</h2>
-      <p>{description}</p>
-      <img src={image} alt={title} />
+    <div className="recipe-card">
+      {/* Hero-sektion */}
+      <div className="hero-image" style={{ backgroundImage: `url(${image})` }}>
+        <div className="hero-overlay">
+          <h1 className="hero-title">{title}</h1>
+        </div>
+      </div>
 
       <h3>Ingredienser:</h3>
       <ul>
@@ -15,7 +18,7 @@ const RecipeCard = ({ title, description, image, ingredients, instructions }) =>
           </li>
         ))}
       </ul>
-      
+
       <h3>Instruktioner:</h3>
       <ol>
         {instructions.map((step, index) => ( // loopar igenom arrayen instructions
