@@ -1,57 +1,40 @@
 import { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
-import { db, storage } from "../../firebase"; // Importera Firestore & Storage
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { db } from "../../firebase";
 
 const RecipeForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState(""); // Bild-URL lagras här efter uppladdning
-  const [imageFile, setImageFile] = useState(null); // Filen som ska laddas upp
+  const [imageUrl, setImageUrl] = useState(""); // Användaren skriver in en bild-URL
   const [ingredients, setIngredients] = useState([{ amount: "", name: "" }]);
   const [instructions, setInstructions] = useState([""]);
-  const [loading, setLoading] = useState(false); // Indikerar om uppladdning pågår
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      let imageUrl = image; // Om ingen ny bild laddas upp, använd befintlig URL
-
-      if (imageFile) {
-        const imageRef = ref(storage, `recipe-images/${imageFile.name}`);
-        await uploadBytes(imageRef, imageFile);
-        imageUrl = await getDownloadURL(imageRef);
-      }
-
       await addDoc(collection(db, "recipes"), {
         title,
         description,
-        image: imageUrl,
+        image: imageUrl, // Sparar URL istället för att ladda upp bild
         ingredients,
         instructions,
       });
 
-      console.log("Recept sparat!");
+      console.log("✅ Recept sparat!");
+
+      // Återställ formuläret
       setTitle("");
       setDescription("");
-      setImage("");
-      setImageFile(null);
+      setImageUrl("");
       setIngredients([{ amount: "", name: "" }]);
       setInstructions([""]);
     } catch (error) {
-      console.error("Fel vid sparande:", error);
+      console.error("❌ Fel vid sparande:", error);
     } finally {
       setLoading(false);
-    }
-  };
-
-  // Hantera bildval
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImageFile(file);
     }
   };
 
@@ -88,16 +71,19 @@ const RecipeForm = () => {
         onChange={(e) => setTitle(e.target.value)}
         required
       />
-      
+
       <textarea
         placeholder="Beskrivning"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
 
-      <h3>Bild</h3>
-      <input type="file" onChange={handleImageChange} accept="image/*" />
-      {imageFile && <p>Vald bild: {imageFile.name}</p>}
+      <input
+        type="text"
+        placeholder="Bild-URL (ladda upp externt)"
+        value={imageUrl}
+        onChange={(e) => setImageUrl(e.target.value)}
+      />
 
       <h3>Ingredienser:</h3>
       {ingredients.map((ingredient, index) => (
