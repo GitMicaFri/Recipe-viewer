@@ -1,9 +1,11 @@
-// grundstruktur
 import './App.css';
 import RecipeCard from './components/RecipeCard/RecipeCard.jsx';
 import Hero from './components/Hero/Hero';
 import SearchBar from './components/SearchBar/SearchBar';
 import HamburgerMenu from './components/HamburgerMenu/HamburgerMenu';
+import RecipeForm from "./components/RecipeForm/RecipeForm.jsx";
+import RecipeList from "./components/RecipeList/RecipeList.jsx";
+
 
 import defaultImage from './assets/default-hero.jpg';
 
@@ -42,19 +44,22 @@ function App() {
       <header className="header">
         <HamburgerMenu />
         <h1>Familjens Receptsamling</h1>
-        <SearchBar onSearch={handleSearch} /> {/* Lägg till SearchBar */}
+        <SearchBar onSearch={handleSearch} />
         <p className="header-subtitle">Upptäck och dela dina favoritrecept!</p>
       </header>
 
       {/* Landing Page */}
-      <Hero
-        title="Välkommen till Familjens Receptsamling"
-        image={defaultImage}
-      />
+      <Hero title="Välkommen till Familjens Receptsamling" image={defaultImage} />
 
-      {/* Ett exempelrecept */}
+      {/* Formulär för att lägga till recept */}
       <main className="main">
+        <RecipeForm />
+
+        {/* Testrecept visas alltid */}
         <RecipeCard {...testRecept} image={testRecept.image || defaultImage} />
+
+        {/* Lista över sparade recept */}
+        <RecipeList />
       </main>
 
       <footer className="footer">

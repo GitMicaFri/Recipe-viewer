@@ -1,3 +1,4 @@
+// Visar ett recept med bild, ingredienser och instruktioner.
 import PropTypes from 'prop-types';
 
 const RecipeCard = ({ title, description, image, ingredients, instructions }) => {
